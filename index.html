@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ava - OpenSpline AI Experience</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+    
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #09090b;
+      color: #f4f4f5;
+      overflow-x: hidden;
+    }
+
+    .glow-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, rgba(59, 130, 246, 0.15) 50%, transparent 70%);
+      filter: blur(80px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .glass-card {
+      background: rgba(24, 24, 27, 0.65);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(168, 85, 247, 0.4);
+      box-shadow: 0 12px 40px 0 rgba(168, 85, 247, 0.2);
+    }
+
+    .avatar-container {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: radial-gradient(circle at center, rgba(39, 39, 42, 0.8), rgba(9, 9, 11, 0.95));
+    }
+
+    .pulse-btn {
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+    }
+
+    .pulse-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(168, 85, 247, 0.7);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between relative">
+
+  <div class="glow-bg"></div>
+
+  <!-- Header / Navbar -->
+  <header class="w-full max-w-6xl mx-auto px-6 py-6 flex justify-between items-center z-10">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 to-blue-500 flex items-center justify-center text-white font-bold text-xl shadow-lg">
+        ⚡
+      </div>
+      <span class="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-300">
+        OpenSpline x Ava
+      </span>
+    </div>
+    <a href="https://github.com/openspline/openspline" target="_blank" class="px-4 py-2 rounded-xl glass-card text-sm font-semibold flex items-center gap-2 hover:bg-white/10 transition">
+      <i class="fa-brands fa-github"></i> Star OpenSpline
+    </a>
+  </header>
+
+  <!-- Hero & Avatar Display Section -->
+  <main class="w-full max-w-6xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center z-10">
+    
+    <!-- Left Column: Copy & Actions -->
+    <div class="lg:col-span-6 space-y-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card text-xs font-semibold text-purple-300">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> OpenSpline Avatar Challenge
+      </div>
+      
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
+        Meet <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400">Ava</span>. <br>
+        Next-Gen 3D Avatar.
+      </h1>
+
+      <p class="text-zinc-400 text-lg leading-relaxed">
+        Interactive 3D spatial experience powered by OpenSpline. Designed for smooth performance, modern web interactions, and futuristic digital identity.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-4 pt-2">
+        <button onclick="triggerSurprise()" class="pulse-btn px-6 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold flex items-center gap-2">
+          ✨ Interact with Ava
+        </button>
+        <button onclick="changeMood()" class="px-6 py-3.5 rounded-xl glass-card text-white font-semibold flex items-center gap-2 hover:bg-white/10">
+          🎨 Toggle Glow Mood
+        </button>
+      </div>
+
+      <!-- Features Grid -->
+      <div class="grid grid-cols-3 gap-4 pt-6 border-t border-zinc-800">
+        <div class="glass-card p-4 rounded-xl text-center">
+          <p class="text-xl font-bold text-purple-400">3D</p>
+          <p class="text-xs text-zinc-400 mt-1">Spatial Design</p>
+        </div>
+        <div class="glass-card p-4 rounded-xl text-center">
+          <p class="text-xl font-bold text-pink-400">60 FPS</p>
+          <p class="text-xs text-zinc-400 mt-1">Smooth Render</p>
+        </div>
+        <div class="glass-card p-4 rounded-xl text-center">
+          <p class="text-xl font-bold text-blue-400">Web3</p>
+          <p class="text-xs text-zinc-400 mt-1">Ready Identity</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Interactive OpenSpline Avatar Canvas -->
+    <div class="lg:col-span-6">
+      <div class="avatar-container glass-card p-2 shadow-2xl flex flex-col items-center justify-center">
+        
+        <!-- Replace the src below with your embedded 3D scene URL or Canvas from OpenSpline -->
+        <iframe 
+          id="splineIframe"
+          src="https://openspline.dev" 
+          class="w-full h-full rounded-2xl border-0"
+          title="OpenSpline Ava Avatar">
+        </iframe>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full max-w-6xl mx-auto px-6 py-6 border-t border-zinc-800/60 flex flex-col sm:flex-row justify-between items-center text-xs text-zinc-500 gap-4 z-10">
+    <p>Created for GDG '26 OpenSpline Challenge</p>
+    <p>Powered by OpenSpline, Vercel & GitHub</p>
+  </footer>
+
+  <script>
+    function triggerSurprise() {
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    }
+
+    let colors = [
+      'radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, rgba(59, 130, 246, 0.15) 50%, transparent 70%)',
+      'radial-gradient(circle, rgba(236, 72, 153, 0.3) 0%, rgba(168, 85, 247, 0.15) 50%, transparent 70%)',
+      'radial-gradient(circle, rgba(34, 197, 94, 0.3) 0%, rgba(59, 130, 246, 0.15) 50%, transparent 70%)'
+    ];
+    let currentColorIndex = 0;
+
+    function changeMood() {
+      currentColorIndex = (currentColorIndex + 1) % colors.length;
+      document.querySelector('.glow-bg').style.background = colors[currentColorIndex];
+    }
+  </script>
+</body>
+</html>
